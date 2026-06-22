@@ -1,0 +1,71 @@
+:root {
+    color: #2d2118;
+    background: #fffdf7;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    --dorado: #c9a227;
+    --guinda: #6e1b2f;
+    --crema: #f8f1e4;
+    --oscuro: #15110d;
+}
+
+* { box-sizing: border-box; }
+html { min-width: 320px; background: #fffdf7; }
+body { min-height: 100vh; margin: 0; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+
+.diseno-publico { min-height: 100vh; display: flex; flex-direction: column; }
+.cabecera-publica, .pie-publico { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem clamp(1.25rem, 5vw, 5rem); }
+.cabecera-publica { position: relative; z-index: 10; border-bottom: 1px solid rgb(110 27 47 / 12%); background: rgb(255 253 247 / 92%); backdrop-filter: blur(16px); }
+.marca-publica, .marca-administrativa { display: inline-flex; align-items: center; gap: 0.75rem; }
+.marca-publica strong, .marca-publica small { display: block; }
+.marca-publica small { margin-top: 0.15rem; color: #765f50; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.marca-publica__simbolo { display: grid; width: 2.6rem; aspect-ratio: 1; place-items: center; border: 1px solid var(--dorado); border-radius: 50%; color: var(--guinda); font-family: Georgia, serif; font-weight: 700; }
+
+.portada { position: relative; min-height: calc(100vh - 150px); display: grid; overflow: hidden; place-items: center; padding: 5rem clamp(1.25rem, 7vw, 8rem); color: #fffdf7; background: linear-gradient(120deg, rgb(21 17 13 / 96%), rgb(72 19 32 / 87%)), radial-gradient(circle at 80% 20%, #c9a227, transparent 34%); }
+.portada__resplandor { position: absolute; top: -18rem; right: -15rem; width: 42rem; aspect-ratio: 1; border: 1px solid rgb(201 162 39 / 35%); border-radius: 50%; box-shadow: 0 0 0 5rem rgb(201 162 39 / 4%), 0 0 0 10rem rgb(201 162 39 / 3%); }
+.portada__contenido { position: relative; z-index: 1; max-width: 760px; text-align: center; }
+.portada__etiqueta { display: inline-block; margin-bottom: 1.5rem; color: #e5c85f; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; }
+.portada__lema { margin: 0 0 0.5rem; color: #e8dcc7; font-family: Georgia, serif; font-style: italic; }
+.portada h1 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.8rem, 8vw, 6.5rem); font-weight: 500; letter-spacing: -0.045em; line-height: 0.95; }
+.portada__descripcion { max-width: 620px; margin: 1.75rem auto; color: #e8dcc7; font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.75; }
+.portada__acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+.pie-publico { color: #765f50; background: var(--crema); font-size: 0.85rem; }
+
+.diseno-autenticacion { min-height: 100vh; display: grid; place-items: center; padding: 4rem 1.25rem; background: linear-gradient(rgb(21 17 13 / 78%), rgb(78 20 36 / 84%)), radial-gradient(circle at center, #c9a227, #15110d 70%); }
+.volver-inicio { position: absolute; top: 1.5rem; left: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem; color: #fffdf7; }
+.tarjeta-acceso { width: min(100%, 430px); }
+.formulario-acceso { display: grid; gap: 0.75rem; }
+.formulario-acceso label { margin-top: 0.35rem; font-weight: 600; }
+.formulario-acceso small { color: #765f50; text-align: center; }
+
+.diseno-administrativo { min-height: 100vh; display: grid; grid-template-columns: 260px 1fr; background: #f6f3ee; }
+.barra-lateral { padding: 1.5rem; color: #fffdf7; background: var(--oscuro); }
+.marca-administrativa { padding-bottom: 1.5rem; border-bottom: 1px solid rgb(255 255 255 / 10%); font-family: Georgia, serif; }
+.menu-administrativo { margin-top: 1.5rem; }
+.menu-administrativo a { display: flex; align-items: center; gap: 0.65rem; padding: 0.8rem 1rem; border-radius: 0.6rem; }
+.menu-administrativo a.router-link-active { color: #fff; background: var(--guinda); }
+.contenido-administrativo { min-width: 0; }
+.cabecera-administrativa { height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; border-bottom: 1px solid #e5ded3; background: #fff; }
+.pagina-administrativa { padding: 2rem; }
+.encabezado-pagina span { color: var(--guinda); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.encabezado-pagina h1 { margin: 0.3rem 0 1.5rem; font-family: Georgia, serif; font-size: 2rem; }
+.rejilla-resumen { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.cantidad-resumen { color: var(--guinda); font-size: 2.25rem; }
+
+@media (max-width: 900px) {
+    .diseno-administrativo { grid-template-columns: 1fr; }
+    .barra-lateral { padding: 1rem; }
+    .menu-administrativo { margin-top: 1rem; }
+    .rejilla-resumen { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+    .cabecera-publica { align-items: flex-start; }
+    .cabecera-publica .p-button-label { display: none; }
+    .pie-publico { align-items: flex-start; flex-direction: column; }
+    .pagina-administrativa, .cabecera-administrativa { padding-inline: 1rem; }
+    .rejilla-resumen { grid-template-columns: 1fr; }
+}
