@@ -1,6 +1,7 @@
 <?php
 
+use App\Http\Controllers\SpaController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/{ruta?}', 'aplicacion')
+Route::get('/{ruta?}', SpaController::class)
     ->where('ruta', '^(?!api|sanctum).*$');

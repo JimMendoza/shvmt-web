@@ -54,6 +54,11 @@ const rutas = [
                 component: () => import('@/modules/publico/paginas/VideosPagina.vue'),
             },
             {
+                path: 'videos/:slug',
+                name: 'video.detalle',
+                component: () => import('@/modules/publico/paginas/VideoDetallePagina.vue'),
+            },
+            {
                 path: 'ubicacion',
                 name: 'ubicacion',
                 component: () => import('@/modules/publico/paginas/UbicacionPagina.vue'),
@@ -62,6 +67,11 @@ const rutas = [
                 path: 'archivo-historico',
                 name: 'archivo.historico',
                 component: () => import('@/modules/publico/paginas/ArchivoHistoricoPagina.vue'),
+            },
+            {
+                path: ':ruta(.*)*',
+                name: 'no.encontrado',
+                component: () => import('@/modules/publico/paginas/NoEncontradoPagina.vue'),
             },
         ],
     },

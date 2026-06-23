@@ -27,7 +27,7 @@ onMounted(async () => {
                 <span>{{ video.categoria || 'Video' }}</span>
                 <h2>{{ video.titulo }}</h2>
                 <p>{{ video.descripcion || 'Video de la festividad.' }}</p>
-                <a :href="video.url_video" target="_blank" rel="noreferrer">Ver video</a>
+                <RouterLink :to="`/videos/${video.slug}`">Ver video</RouterLink>
             </article>
         </div>
     </section>

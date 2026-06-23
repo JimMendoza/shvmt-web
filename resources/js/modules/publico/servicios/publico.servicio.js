@@ -28,6 +28,10 @@ export function obtenerVideos() {
     return http.get('/publico/videos');
 }
 
+export function obtenerVideo(slug) {
+    return http.get(`/publico/videos/${slug}`);
+}
+
 export function obtenerUbicaciones() {
     return http.get('/publico/ubicaciones');
 }

@@ -1883,6 +1883,8 @@ Las páginas consumen las APIs públicas de fase 4 y usan diseño propio con est
 
 ### Fase 8: Optimización
 
+Estado: completada el 23 de junio de 2026.
+
 Objetivo:
 
 - Mejorar carga, SEO y experiencia.
@@ -1899,6 +1901,20 @@ Tareas:
 7. Validar mobile.
 8. Validar errores 404.
 ```
+
+Resultado implementado:
+
+```txt
+SpaController genera metadatos iniciales desde Laravel antes de montar Vue.
+Meta description, title y Open Graph se resuelven por ruta pública.
+Metadatos dinámicos para álbumes, videos y comunicados publicados.
+Página 404 dentro de la SPA para rutas públicas no encontradas.
+Detalle público de video con iframe lazy loading.
+CSS responsive reforzado para páginas públicas.
+Pruebas de SEO agregadas para HTML inicial y metadatos de álbum.
+```
+
+La optimización real de imágenes queda limitada hasta implementar subida/procesamiento de archivos, porque todavía no hay assets definitivos almacenados.
 
 ---
 
