@@ -38,4 +38,16 @@ Rutas disponibles en la fase 1:
 /api/estado
 ```
 
-El acceso y la protección del panel se implementarán en la fase 2.
+Las rutas administrativas requieren una sesión válida.
+
+## Autenticación
+
+La fase 2 implementa Sanctum mediante sesiones y cookies, protección CSRF, cambio obligatorio de contraseña y autorización por roles y permisos.
+
+El administrador inicial se configura en `.env`:
+
+```txt
+ADMIN_NAME=
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
+```

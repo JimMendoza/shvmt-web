@@ -1,5 +1,15 @@
 <script setup>
 import Button from 'primevue/button';
+import { useRouter } from 'vue-router';
+import { usarAutenticacionStore } from '@/modules/autenticacion/store/autenticacion.store';
+
+const autenticacion = usarAutenticacionStore();
+const router = useRouter();
+
+async function salir() {
+    await autenticacion.cerrarSesion();
+    await router.push('/admin/login');
+}
 </script>
 
 <template>
@@ -20,8 +30,11 @@ import Button from 'primevue/button';
 
         <section class="contenido-administrativo">
             <header class="cabecera-administrativa">
-                <strong>Administración</strong>
-                <Button label="Cerrar sesión" icon="pi pi-sign-out" text disabled />
+                <div>
+                    <strong>{{ autenticacion.usuario?.nombre }}</strong>
+                    <small class="correo-usuario">{{ autenticacion.usuario?.correo }}</small>
+                </div>
+                <Button label="Cerrar sesión" icon="pi pi-sign-out" text @click="salir" />
             </header>
 
             <main class="pagina-administrativa">

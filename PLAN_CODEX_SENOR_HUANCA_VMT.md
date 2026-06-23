@@ -498,11 +498,11 @@ Campos:
 
 ```txt
 id
-name
-email
-password
-is_active
-must_change_password
+nombre
+correo
+contrasena
+activo
+debe_cambiar_contrasena
 created_at
 updated_at
 ```
@@ -521,11 +521,11 @@ La seguridad se implementa con RBAC simplificado. No se crearán personas, depen
 Tablas necesarias:
 
 ```txt
-users
-roles
-permissions
-role_user
-permission_role
+seguridad.usuarios
+seguridad.roles
+seguridad.permisos
+seguridad.rol_usuario
+seguridad.permiso_rol
 ```
 
 Roles iniciales sugeridos:
@@ -884,10 +884,10 @@ Photo belongsTo Album
 
 Album belongsTo Photo as cover_photo opcional
 
-User belongsToMany Role
-Role belongsToMany User mediante role_user
-Role belongsToMany Permission mediante permission_role
-Permission belongsToMany Role
+Usuario belongsToMany Rol mediante seguridad.rol_usuario
+Rol belongsToMany Usuario mediante seguridad.rol_usuario
+Rol belongsToMany Permiso mediante seguridad.permiso_rol
+Permiso belongsToMany Rol mediante seguridad.permiso_rol
 
 HistoricalEntry no se relacionará con álbumes en la primera versión
 ```
@@ -1348,7 +1348,7 @@ No incluirá formulario de envío de mensajes en la primera versión.
 Stores ubicados dentro de su módulo:
 
 ```txt
-modules/auth/store/auth.store.js
+modules/autenticacion/store/autenticacion.store.js
 modules/site/store/site.store.js
 modules/program/store/program.store.js
 modules/gallery/store/gallery.store.js
@@ -1630,6 +1630,8 @@ Tareas:
 
 ### Fase 2: Autenticación
 
+Estado: completada el 22 de junio de 2026.
+
 Objetivo:
 
 - Login admin funcional.
@@ -1644,8 +1646,8 @@ Tareas:
 1. Instalar y configurar Sanctum.
 2. Crear AuthController.
 3. Crear endpoints login/logout/me.
-4. Crear auth.store.js.
-5. Crear LoginPage.vue.
+4. Crear autenticacion.store.js.
+5. Crear AccesoPagina.vue y CuentaPagina.vue.
 6. Crear guard de rutas admin.
 7. Crear usuario admin inicial con seeder.
 8. Crear modelos y tablas de roles, permisos y pivotes.
@@ -1824,7 +1826,7 @@ Configura este proyecto Laravel como una aplicación monolítica con Vue 3, Prim
 ### Prompt 2: Configurar autenticación
 
 ```txt
-Implementa autenticación de administrador usando Laravel Sanctum con sesiones y cookies para esta SPA monolítica. Crea AuthController con login, logout y me. Implementa RBAC simplificado con User, Role, Permission, role_user y permission_role, sin personas ni dependencias. Crea un seeder para roles, permisos y un usuario admin inicial. En Vue crea auth.store.js con Pinia, LoginPage.vue y protección de rutas por autenticación y permisos.
+Implementa autenticación de administrador usando Laravel Sanctum con sesiones y cookies para esta SPA monolítica. Crea AutenticacionController con iniciarSesion, cerrarSesion, usuarioActual y cambiarContrasena. Implementa RBAC simplificado con Usuario, Rol, Permiso, seguridad.rol_usuario y seguridad.permiso_rol, sin personas ni dependencias. Crea un seeder para roles, permisos y un usuario admin inicial. En Vue crea autenticacion.store.js con Pinia, AccesoPagina.vue, CuentaPagina.vue y protección de rutas por autenticación y permisos.
 ```
 
 ---

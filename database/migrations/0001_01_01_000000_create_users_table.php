@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('seguridad.users', function (Blueprint $table) {
+        Schema::create('seguridad.usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('nombre');
+            $table->string('correo')->unique();
+            $table->timestamp('correo_verificado_en')->nullable();
+            $table->string('contrasena');
+            $table->boolean('activo')->default(true);
+            $table->boolean('debe_cambiar_contrasena')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
 
-        Schema::create('seguridad.password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
+        Schema::create('seguridad.recuperaciones_contrasena', function (Blueprint $table) {
+            $table->string('correo')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
@@ -43,7 +45,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('sistema.sessions');
-        Schema::dropIfExists('seguridad.password_reset_tokens');
-        Schema::dropIfExists('seguridad.users');
+        Schema::dropIfExists('seguridad.recuperaciones_contrasena');
+        Schema::dropIfExists('seguridad.usuarios');
     }
 };
