@@ -2,7 +2,16 @@ import { createRouter, createWebHistory } from 'vue-router';
 import DisenoPublico from '@/layouts/DisenoPublico.vue';
 import DisenoAdministrativo from '@/layouts/DisenoAdministrativo.vue';
 import DisenoAutenticacion from '@/layouts/DisenoAutenticacion.vue';
+import { recursosAdmin } from '@/modules/admin/config/recursos';
 import { usarAutenticacionStore } from '@/modules/autenticacion/store/autenticacion.store';
+
+const rutasCrudAdmin = Object.entries(recursosAdmin).map(([clave, configuracion]) => ({
+    path: clave,
+    name: `admin.${clave}`,
+    component: () => import('@/modules/admin/paginas/CrudAdminPagina.vue'),
+    meta: { permiso: configuracion.permiso },
+    props: { recurso: clave },
+}));
 
 const rutas = [
     {
@@ -48,6 +57,13 @@ const rutas = [
                 name: 'cuenta',
                 component: () => import('@/modules/autenticacion/paginas/CuentaPagina.vue'),
             },
+            {
+                path: 'seguridad',
+                name: 'admin.seguridad',
+                component: () => import('@/modules/admin/paginas/SeguridadPagina.vue'),
+                meta: { permiso: 'seguridad.usuarios.administrar' },
+            },
+            ...rutasCrudAdmin,
         ],
     },
 ];

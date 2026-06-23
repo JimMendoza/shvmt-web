@@ -2,9 +2,12 @@
 import Button from 'primevue/button';
 import { useRouter } from 'vue-router';
 import { usarAutenticacionStore } from '@/modules/autenticacion/store/autenticacion.store';
+import { menuAdmin } from '@/modules/admin/config/recursos';
 
 const autenticacion = usarAutenticacionStore();
 const router = useRouter();
+
+const opcionesMenu = menuAdmin.filter((opcion) => autenticacion.tienePermiso(opcion.permiso));
 
 async function salir() {
     await autenticacion.cerrarSesion();
@@ -21,9 +24,9 @@ async function salir() {
             </RouterLink>
 
             <nav class="menu-administrativo">
-                <RouterLink to="/admin/dashboard">
-                    <i class="pi pi-home" />
-                    Panel
+                <RouterLink v-for="opcion in opcionesMenu" :key="opcion.ruta" :to="opcion.ruta">
+                    <i :class="opcion.icono" />
+                    {{ opcion.etiqueta }}
                 </RouterLink>
             </nav>
         </aside>

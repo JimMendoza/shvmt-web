@@ -1,6 +1,8 @@
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
 import { definePreset } from '@primeuix/themes';
+import ConfirmationService from 'primevue/confirmationservice';
+import ToastService from 'primevue/toastservice';
 
 const TemaHuanca = definePreset(Aura, {
     semantic: {
@@ -30,4 +32,6 @@ export default function configurarPrimeVue(aplicacion) {
         },
         ripple: true,
     });
+    aplicacion.use(ConfirmationService);
+    aplicacion.use(ToastService);
 }

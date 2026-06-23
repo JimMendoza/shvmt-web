@@ -1802,6 +1802,8 @@ Se usa Eloquent directo, un controlador CRUD base para evitar repetición innece
 
 ### Fase 6: Admin UI
 
+Estado: completada el 23 de junio de 2026.
+
 Objetivo:
 
 - Panel administrativo usable con PrimeVue.
@@ -1820,6 +1822,17 @@ Tareas:
 9. Crear switches de publicado/no publicado.
 10. Crear ordenamiento básico.
 ```
+
+Resultado implementado:
+
+```txt
+Layout administrativo actualizado con menú lateral filtrado por permisos.
+Página CRUD genérica con PrimeVue DataTable, Dialog, Toast, ConfirmDialog, ToggleSwitch y formularios.
+Página de seguridad para usuarios, roles y asignación de permisos.
+Rutas internas para configuración, historia, mayordomías, programa, álbumes, fotos, videos, comunicados, ubicaciones, colaboradores, archivo histórico y seguridad.
+```
+
+La subida real de imágenes queda para la fase 8 porque requiere almacenamiento y procesamiento de archivos en backend.
 
 ---
 

@@ -42,9 +42,9 @@ button, input { font: inherit; }
 .formulario-acceso small { color: #765f50; text-align: center; }
 
 .diseno-administrativo { min-height: 100vh; display: grid; grid-template-columns: 260px 1fr; background: #f6f3ee; }
-.barra-lateral { padding: 1.5rem; color: #fffdf7; background: var(--oscuro); }
+.barra-lateral { max-height: 100vh; overflow-y: auto; padding: 1.5rem; color: #fffdf7; background: var(--oscuro); }
 .marca-administrativa { padding-bottom: 1.5rem; border-bottom: 1px solid rgb(255 255 255 / 10%); font-family: Georgia, serif; }
-.menu-administrativo { margin-top: 1.5rem; }
+.menu-administrativo { display: grid; gap: 0.25rem; margin-top: 1.5rem; }
 .menu-administrativo a { display: flex; align-items: center; gap: 0.65rem; padding: 0.8rem 1rem; border-radius: 0.6rem; }
 .menu-administrativo a.router-link-active { color: #fff; background: var(--guinda); }
 .contenido-administrativo { min-width: 0; }
@@ -57,6 +57,16 @@ button, input { font: inherit; }
 .cantidad-resumen { color: var(--guinda); font-size: 2.25rem; }
 .pagina-cuenta { display: grid; min-height: calc(100vh - 136px); place-items: center; }
 .tarjeta-cuenta { width: min(100%, 480px); }
+.barra-crud { margin-bottom: 1rem; border: 0; padding: 0; background: transparent; }
+.columna-acciones { width: 8rem; }
+.dialogo-crud { width: min(760px, calc(100vw - 2rem)); }
+.formulario-crud { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.formulario-crud label { display: grid; gap: 0.4rem; color: #4d3c31; font-weight: 600; }
+.formulario-crud label:has(textarea), .acciones-dialogo { grid-column: 1 / -1; }
+.formulario-crud input, .formulario-crud textarea, .formulario-crud .p-inputnumber, .formulario-crud .p-password, .formulario-crud .p-multiselect { width: 100%; }
+.campo-inline { align-content: center; grid-template-columns: 1fr auto; align-items: center; }
+.acciones-dialogo { display: flex; justify-content: flex-end; gap: 0.75rem; padding-top: 0.5rem; }
+.acciones-tabla { display: flex; justify-content: flex-end; margin-bottom: 1rem; }
 
 @media (max-width: 900px) {
     .diseno-administrativo { grid-template-columns: 1fr; }
