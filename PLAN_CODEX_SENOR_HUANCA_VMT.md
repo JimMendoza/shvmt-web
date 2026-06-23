@@ -1838,6 +1838,8 @@ La subida real de imágenes queda para la fase 8 porque requiere almacenamiento 
 
 ### Fase 7: Sitio público visual
 
+Estado: completada el 23 de junio de 2026.
+
 Objetivo:
 
 - Sitio público bonito y de nivel producción.
@@ -1858,6 +1860,24 @@ Tareas:
 11. Crear Footer.
 12. Crear botón WhatsApp.
 ```
+
+Resultado implementado:
+
+```txt
+Home pública final con hero visual, bloque de programa y galería destacada.
+Layout público con navegación, footer y botón WhatsApp.
+Páginas públicas:
+- /historia
+- /mayordomia
+- /programa
+- /galeria
+- /galeria/{slug}
+- /videos
+- /ubicacion
+- /archivo-historico
+```
+
+Las páginas consumen las APIs públicas de fase 4 y usan diseño propio con estilo devocional, andino y cinematográfico. Las imágenes reales y optimización de assets quedan para las fases 8 y subida de imágenes.
 
 ---
 

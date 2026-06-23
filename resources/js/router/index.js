@@ -21,7 +21,47 @@ const rutas = [
             {
                 path: '',
                 name: 'inicio',
-                component: () => import('@/modules/inicio/paginas/InicioPagina.vue'),
+                component: () => import('@/modules/publico/paginas/InicioPublicoPagina.vue'),
+            },
+            {
+                path: 'historia',
+                name: 'historia',
+                component: () => import('@/modules/publico/paginas/HistoriaPagina.vue'),
+            },
+            {
+                path: 'mayordomia',
+                name: 'mayordomia',
+                component: () => import('@/modules/publico/paginas/MayordomiaPagina.vue'),
+            },
+            {
+                path: 'programa',
+                name: 'programa',
+                component: () => import('@/modules/publico/paginas/ProgramaPagina.vue'),
+            },
+            {
+                path: 'galeria',
+                name: 'galeria',
+                component: () => import('@/modules/publico/paginas/GaleriaPagina.vue'),
+            },
+            {
+                path: 'galeria/:slug',
+                name: 'album.detalle',
+                component: () => import('@/modules/publico/paginas/AlbumDetallePagina.vue'),
+            },
+            {
+                path: 'videos',
+                name: 'videos',
+                component: () => import('@/modules/publico/paginas/VideosPagina.vue'),
+            },
+            {
+                path: 'ubicacion',
+                name: 'ubicacion',
+                component: () => import('@/modules/publico/paginas/UbicacionPagina.vue'),
+            },
+            {
+                path: 'archivo-historico',
+                name: 'archivo.historico',
+                component: () => import('@/modules/publico/paginas/ArchivoHistoricoPagina.vue'),
             },
         ],
     },

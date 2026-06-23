@@ -1,5 +1,15 @@
 <script setup>
 import Button from 'primevue/button';
+
+const enlaces = [
+    { texto: 'Historia', ruta: '/historia' },
+    { texto: 'Mayordomía', ruta: '/mayordomia' },
+    { texto: 'Programa', ruta: '/programa' },
+    { texto: 'Galería', ruta: '/galeria' },
+    { texto: 'Videos', ruta: '/videos' },
+    { texto: 'Ubicación', ruta: '/ubicacion' },
+    { texto: 'Archivo', ruta: '/archivo-historico' },
+];
 </script>
 
 <template>
@@ -12,6 +22,12 @@ import Button from 'primevue/button';
                     <small>Villa María del Triunfo</small>
                 </span>
             </RouterLink>
+
+            <nav class="navegacion-publica">
+                <RouterLink v-for="enlace in enlaces" :key="enlace.ruta" :to="enlace.ruta">
+                    {{ enlace.texto }}
+                </RouterLink>
+            </nav>
 
             <Button
                 as="a"
@@ -29,8 +45,19 @@ import Button from 'primevue/button';
         </main>
 
         <footer class="pie-publico">
-            <span>Festividad del Señor de Huanca VMT</span>
-            <span>Fe, tradición y comunidad</span>
+            <div>
+                <strong>Festividad del Señor de Huanca VMT</strong>
+                <span>Fe, tradición y comunidad</span>
+            </div>
+            <div class="pie-publico__enlaces">
+                <RouterLink to="/programa">Programa</RouterLink>
+                <RouterLink to="/galeria">Galería</RouterLink>
+                <RouterLink to="/ubicacion">Ubicación</RouterLink>
+            </div>
         </footer>
+
+        <a class="boton-whatsapp" href="https://wa.me/51999999999" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+            <i class="pi pi-whatsapp" />
+        </a>
     </div>
 </template>
