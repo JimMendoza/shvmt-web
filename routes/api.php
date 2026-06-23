@@ -8,4 +8,5 @@ Route::get('/estado', fn () => [
 ]);
 
 require __DIR__.'/api/autenticacion.php';
+require __DIR__.'/api/publico.php';
 require __DIR__.'/api/admin.php';

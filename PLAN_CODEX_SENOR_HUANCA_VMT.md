@@ -1698,6 +1698,8 @@ También se agregó `ContenidoInicialSeeder` con datos genéricos publicados par
 
 ### Fase 4: APIs públicas
 
+Estado: completada el 23 de junio de 2026.
+
 Objetivo:
 
 - El sitio público debe poder leer contenido publicado.
@@ -1707,11 +1709,31 @@ Tareas:
 ```txt
 1. Crear controladores públicos.
 2. Crear endpoints públicos.
-3. Filtrar por is_published.
-4. Ordenar por sort_order.
+3. Filtrar por publicado.
+4. Ordenar por orden, fecha, año o destacado según corresponda.
 5. Crear Resources si es necesario.
 6. Probar endpoints con datos seed.
 ```
+
+Resultado implementado:
+
+```txt
+GET /api/publico/configuracion-sitio
+GET /api/publico/historia
+GET /api/publico/mayordomia
+GET /api/publico/programa
+GET /api/publico/albumes
+GET /api/publico/albumes/{slug}
+GET /api/publico/videos
+GET /api/publico/videos/{slug}
+GET /api/publico/comunicados
+GET /api/publico/comunicados/{slug}
+GET /api/publico/ubicaciones
+GET /api/publico/colaboradores
+GET /api/publico/archivo-historico
+```
+
+Los endpoints usan Eloquent directo, devuelven contenido público y ocultan registros no publicados en listados y detalles.
 
 ---
 
