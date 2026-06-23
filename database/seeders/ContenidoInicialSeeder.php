@@ -19,9 +19,8 @@ class ContenidoInicialSeeder extends Seeder
     public function run(): void
     {
         ConfiguracionSitio::query()->updateOrCreate(
-            ['id' => 1],
+            ['nombre_sitio' => 'Festividad del Señor de Huanca VMT'],
             [
-                'nombre_sitio' => 'Festividad del Señor de Huanca VMT',
                 'subtitulo_sitio' => 'Fe, tradición y memoria viva',
                 'anio_principal' => now()->year,
                 'titulo_portada' => 'Señor de Huanca en Villa María del Triunfo',
@@ -32,9 +31,8 @@ class ContenidoInicialSeeder extends Seeder
         );
 
         SeccionHistoria::query()->updateOrCreate(
-            ['id' => 1],
+            ['titulo' => 'Historia de la devoción'],
             [
-                'titulo' => 'Historia de la devoción',
                 'subtitulo' => 'Memoria de fe y comunidad',
                 'contenido' => 'Contenido inicial pendiente de revisión.',
                 'orden' => 1,
@@ -112,9 +110,8 @@ class ContenidoInicialSeeder extends Seeder
         );
 
         Ubicacion::query()->updateOrCreate(
-            ['id' => 1],
+            ['titulo' => 'Ubicación principal'],
             [
-                'titulo' => 'Ubicación principal',
                 'descripcion' => 'Ubicación inicial pendiente de actualización.',
                 'direccion' => 'Villa María del Triunfo, Lima',
                 'tipo' => 'iglesia',
@@ -124,9 +121,8 @@ class ContenidoInicialSeeder extends Seeder
         );
 
         Colaborador::query()->updateOrCreate(
-            ['id' => 1],
+            ['nombre' => 'Comunidad devota'],
             [
-                'nombre' => 'Comunidad devota',
                 'descripcion' => 'Registro inicial de colaboradores.',
                 'tipo' => 'colaborador',
                 'orden' => 1,

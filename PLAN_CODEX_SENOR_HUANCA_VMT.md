@@ -1739,6 +1739,8 @@ Los endpoints usan Eloquent directo, devuelven contenido público y ocultan regi
 
 ### Fase 5: CRUD admin
 
+Estado: completada el 23 de junio de 2026.
+
 Objetivo:
 
 - Administrar contenido desde panel.
@@ -1760,6 +1762,41 @@ Tareas:
 12. Crear CRUD para usuarios y roles.
 13. Crear asignación de roles a usuarios y permisos a roles.
 ```
+
+Resultado implementado:
+
+```txt
+CRUD admin protegidos por auth:sanctum, cambio.contrasena y middleware can.
+
+Contenido:
+- /api/admin/configuracion-sitio
+- /api/admin/historia
+- /api/admin/mayordomias
+- /api/admin/comunicados
+- /api/admin/ubicaciones
+- /api/admin/colaboradores
+- /api/admin/archivo-historico
+
+Programa:
+- /api/admin/dias-programa
+- /api/admin/actividades-programa
+
+Galería:
+- /api/admin/albumes
+- /api/admin/fotos
+
+Multimedia:
+- /api/admin/videos
+
+Seguridad:
+- /api/admin/usuarios
+- /api/admin/usuarios/{usuario}/roles
+- /api/admin/roles
+- /api/admin/roles/{rol}/permisos
+- /api/admin/permisos
+```
+
+Se usa Eloquent directo, un controlador CRUD base para evitar repetición innecesaria y controladores específicos para usuarios, roles y permisos.
 
 ---
 
