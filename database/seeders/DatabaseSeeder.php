@@ -8,6 +8,9 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call(SeguridadSeeder::class);
+        $this->call([
+            SeguridadSeeder::class,
+            ContenidoInicialSeeder::class,
+        ]);
     }
 }

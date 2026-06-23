@@ -1658,6 +1658,8 @@ Tareas:
 
 ### Fase 3: Modelos y migraciones
 
+Estado: completada el 23 de junio de 2026.
+
 Objetivo:
 
 - Crear toda la base estructural.
@@ -1671,8 +1673,26 @@ Tareas:
 4. Crear seeders iniciales.
 5. Ejecutar migraciones.
 6. Probar consultas básicas.
-7. Verificar relaciones User-Role-Permission.
 ```
+
+Resultado implementado:
+
+```txt
+contenido.configuraciones_sitio -> ConfiguracionSitio
+contenido.secciones_historia -> SeccionHistoria
+contenido.mayordomias -> Mayordomia
+contenido.comunicados -> Comunicado
+contenido.ubicaciones -> Ubicacion
+contenido.colaboradores -> Colaborador
+contenido.entradas_historicas -> EntradaHistorica
+programa.dias_programa -> DiaPrograma
+programa.actividades_programa -> ActividadPrograma
+galeria.albumes -> Album
+galeria.fotos -> Foto
+multimedia.videos -> Video
+```
+
+También se agregó `ContenidoInicialSeeder` con datos genéricos publicados para pruebas iniciales.
 
 ---
 
@@ -1834,7 +1854,9 @@ Implementa autenticación de administrador usando Laravel Sanctum con sesiones y
 ### Prompt 3: Crear modelos y migraciones
 
 ```txt
-Crea los modelos, migraciones y relaciones para: User, Role, Permission, SiteSetting, HistorySection, Mayordomia, ProgramDay, ProgramActivity, Album, Photo, Video, Announcement, Location, Collaborator y HistoricalEntry. Incluye las tablas pivote role_user y permission_role. Usa PostgreSQL. Agrega campos is_published, sort_order y timestamps donde corresponda. Define relaciones Eloquent correctas.
+Crea los modelos, migraciones y relaciones para: ConfiguracionSitio, SeccionHistoria, Mayordomia, DiaPrograma, ActividadPrograma, Album, Foto, Video, Comunicado, Ubicacion, Colaborador y EntradaHistorica.
+Usuario, Rol, Permiso y sus pivotes ya pertenecen a la fase 2 de seguridad.
+Usa PostgreSQL con esquemas por dominio. Usa nombres en español para tablas y columnas de negocio. Agrega campos publicado, orden y timestamps donde corresponda. Define relaciones Eloquent correctas. Agrega un seeder inicial genérico para pruebas.
 ```
 
 ---
