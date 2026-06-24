@@ -14,7 +14,8 @@ class IniciarSesionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'correo' => ['required', 'email'],
+            'login' => ['required_without:correo', 'string'],
+            'correo' => ['required_without:login', 'string'],
             'contrasena' => ['required', 'string'],
         ];
     }

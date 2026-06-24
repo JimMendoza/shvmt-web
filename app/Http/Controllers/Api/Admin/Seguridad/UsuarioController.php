@@ -12,7 +12,7 @@ class UsuarioController extends Controller
     public function index()
     {
         return Usuario::query()
-            ->with('roles')
+            ->with(['persona', 'roles'])
             ->orderBy('nombre')
             ->get();
     }
@@ -26,12 +26,12 @@ class UsuarioController extends Controller
             $usuario->roles()->sync($request->input('roles', []));
         }
 
-        return $usuario->load('roles');
+        return $usuario->load(['persona', 'roles']);
     }
 
     public function show(int $id)
     {
-        return Usuario::query()->with('roles')->findOrFail($id);
+        return Usuario::query()->with(['persona', 'roles'])->findOrFail($id);
     }
 
     public function update(CrudAdminRequest $request, int $id)
@@ -49,7 +49,7 @@ class UsuarioController extends Controller
             $usuario->roles()->sync($request->input('roles', []));
         }
 
-        return $usuario->fresh('roles');
+        return $usuario->fresh(['persona', 'roles']);
     }
 
     public function destroy(int $id)
@@ -64,6 +64,6 @@ class UsuarioController extends Controller
         $registro = Usuario::query()->findOrFail($usuario);
         $registro->roles()->sync($request->input('roles', []));
 
-        return $registro->fresh('roles');
+        return $registro->fresh(['persona', 'roles']);
     }
 }

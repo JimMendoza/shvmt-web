@@ -33,6 +33,24 @@ class AutenticacionTest extends TestCase
         $this->assertGuest('web');
     }
 
+    public function test_usuario_puede_iniciar_sesion_con_username(): void
+    {
+        $usuario = Usuario::factory()->create([
+            'username' => 'administrador',
+            'correo' => 'admin@prueba.pe',
+            'contrasena' => 'secreta123',
+        ]);
+
+        $this->postJson('/api/auth/login', [
+            'login' => 'administrador',
+            'contrasena' => 'secreta123',
+        ])
+            ->assertOk()
+            ->assertJsonPath('usuario.username', 'administrador');
+
+        $this->assertAuthenticatedAs($usuario, 'web');
+    }
+
     public function test_usuario_inactivo_no_puede_iniciar_sesion(): void
     {
         Usuario::factory()->create([

@@ -11,8 +11,10 @@ class UsuarioAutenticadoResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nombre' => $this->nombre,
-            'correo' => $this->correo,
+            'nombre' => $this->nombreVisible(),
+            'correo' => $this->persona?->correo ?: $this->correo,
+            'username' => $this->username,
+            'persona_id' => $this->persona_id,
             'debe_cambiar_contrasena' => $this->debe_cambiar_contrasena,
             'roles' => $this->roles->pluck('nombre')->values(),
             'permisos' => $this->roles

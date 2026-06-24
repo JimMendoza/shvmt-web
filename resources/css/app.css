@@ -87,9 +87,15 @@ button, input { font: inherit; }
 .diseno-administrativo { min-height: 100vh; display: grid; grid-template-columns: 260px 1fr; background: #f6f3ee; }
 .barra-lateral { max-height: 100vh; overflow-y: auto; padding: 1.5rem; color: #fffdf7; background: var(--oscuro); }
 .marca-administrativa { padding-bottom: 1.5rem; border-bottom: 1px solid rgb(255 255 255 / 10%); font-family: Georgia, serif; }
-.menu-administrativo { display: grid; gap: 0.25rem; margin-top: 1.5rem; }
-.menu-administrativo a { display: flex; align-items: center; gap: 0.65rem; padding: 0.8rem 1rem; border-radius: 0.6rem; }
-.menu-administrativo a.router-link-active { color: #fff; background: var(--guinda); }
+.menu-administrativo { display: grid; gap: 0.8rem; margin-top: 1.5rem; }
+.menu-administrativo__bloque { display: grid; gap: 0.2rem; }
+.menu-administrativo__seccion { display: flex; align-items: center; gap: 0.55rem; padding: 0.65rem 0.4rem; color: #d9c7b7; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+.menu-administrativo__grupo { display: grid; gap: 0.15rem; }
+.menu-administrativo__grupo-titulo, .menu-administrativo__enlace { display: flex; align-items: center; gap: 0.65rem; padding: 0.72rem 0.85rem; border-radius: 0.6rem; }
+.menu-administrativo__grupo-titulo { color: #f3e9dc; font-weight: 700; }
+.menu-administrativo__hijos { display: grid; gap: 0.15rem; margin-left: 0.75rem; padding-left: 0.5rem; border-left: 1px solid rgba(255, 255, 255, 0.12); }
+.menu-administrativo__titulo { padding: 0.5rem 0.85rem; color: #c7b19e; font-size: 0.74rem; font-weight: 800; text-transform: uppercase; }
+.menu-administrativo__enlace.router-link-active { color: #fff; background: var(--guinda); }
 .contenido-administrativo { min-width: 0; }
 .cabecera-administrativa { height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; border-bottom: 1px solid #e5ded3; background: #fff; }
 .correo-usuario { display: block; margin-top: 0.15rem; color: #765f50; }

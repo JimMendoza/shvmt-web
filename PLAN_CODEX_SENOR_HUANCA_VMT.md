@@ -516,17 +516,28 @@ Role belongsToMany Permission
 Permission belongsToMany Role
 ```
 
-La seguridad se implementa con RBAC simplificado. No se crearán personas, dependencias ni una tabla genérica de estados.
+La seguridad se implementa con RBAC simplificado y registro de persona por cada usuario. El usuario puede iniciar sesión con username o correo.
 
 Tablas necesarias:
 
 ```txt
 seguridad.usuarios
+seguridad.personas
 seguridad.roles
 seguridad.permisos
 seguridad.rol_usuario
 seguridad.permiso_rol
+catalogos.estados
+catalogos.sexos
+catalogos.tipos_documento_identidad
+catalogos.departamentos
+catalogos.provincias
+catalogos.distritos
+interfaz.menus
+interfaz.menu_items
 ```
+
+Los estados son datos duros administrados por seeder, sin CRUD. Los catálogos de sexo, tipo de documento y ubigeo sí tendrán CRUD administrativo. El menú administrativo vive en base de datos y soporta niveles mediante `interfaz.menu_items.parent_id`.
 
 Roles iniciales sugeridos:
 
@@ -1562,7 +1573,7 @@ No exponer rutas admin sin auth
 No confiar en permisos del frontend
 ```
 
-No se implementarán personas, dependencias, estados genéricos ni menús administrables en base de datos. El menú administrativo se define en Vue y se filtra según los permisos del usuario autenticado.
+Se implementarán personas, catálogos base y menús administrables en base de datos. Los estados se cargan por seeder y no tendrán CRUD. El menú administrativo se leerá desde `interfaz.menus` e `interfaz.menu_items`, se filtrará por permisos en backend y soportará submenús de varios niveles mediante `parent_id`.
 
 ---
 
@@ -1988,7 +1999,7 @@ Crea controladores API protegidos por auth:sanctum para administrar SiteSetting,
 ### Prompt 6: Crear panel administrativo con PrimeVue
 
 ```txt
-Crea el panel administrativo en Vue 3 con PrimeVue. Implementa AdminLayout con sidebar, topbar y rutas internas. Cada funcionalidad debe vivir en su módulo y contener solo los pages, components, composables, services y store que necesite. Crea CRUD para historia, mayordomía, programa, álbumes, fotos, videos, comunicados, ubicaciones, colaboradores, archivo histórico, usuarios y roles. Incluye asignación de roles y permisos. Define el menú en Vue y filtra sus opciones con los permisos del usuario. Usa DataTable, Dialog, formularios, FileUpload, ToggleSwitch, Toast y ConfirmDialog de PrimeVue cuando correspondan.
+Crea el panel administrativo en Vue 3 con PrimeVue. Implementa AdminLayout con sidebar, topbar y rutas internas. Cada funcionalidad debe vivir en su módulo y contener solo los pages, components, composables, services y store que necesite. Crea CRUD para historia, mayordomía, programa, álbumes, fotos, videos, comunicados, ubicaciones, colaboradores, archivo histórico, usuarios, personas, roles, catálogos base y menús de interfaz. Incluye asignación de roles y permisos. El menú debe venir desde base de datos, filtrado por permisos en backend, y debe soportar submenús por niveles. Usa DataTable, Dialog, formularios, FileUpload, ToggleSwitch, Toast y ConfirmDialog de PrimeVue cuando correspondan.
 ```
 
 ---
@@ -2105,7 +2116,12 @@ UI administrativa: PrimeVue con preset Aura personalizado
 UI pública: componentes y CSS/SCSS propios
 Dominio principal: senordehuancavmt.pe
 Autenticación: Sanctum con sesiones, cookies y CSRF
+Login: acceso con username o correo
 Autorización: RBAC con usuarios, roles y permisos
+Personas: cada usuario debe estar relacionado con seguridad.personas
+Catálogos base: estados, sexos, tipos de documento, departamentos, provincias y distritos
+Estados: datos duros por seeder, sin CRUD administrativo
+Menú administrativo: almacenado en interfaz.menus e interfaz.menu_items, con niveles por parent_id
 Roles iniciales: admin, editor y photographer
 SEO social: metadatos iniciales y Open Graph generados por Laravel
 Contenido: texto simple con saltos de línea, sin editor HTML enriquecido

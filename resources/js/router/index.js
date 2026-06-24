@@ -7,7 +7,7 @@ import { usarAutenticacionStore } from '@/modules/autenticacion/store/autenticac
 
 const rutasCrudAdmin = Object.entries(recursosAdmin).map(([clave, configuracion]) => ({
     path: clave,
-    name: `admin.${clave}`,
+    name: `admin.${clave.replaceAll('/', '.')}`,
     component: () => import('@/modules/admin/paginas/CrudAdminPagina.vue'),
     meta: { permiso: configuracion.permiso },
     props: { recurso: clave },

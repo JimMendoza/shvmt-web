@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Seguridad\Permiso;
+use App\Models\Seguridad\Persona;
 use App\Models\Seguridad\Rol;
 use App\Models\Seguridad\Usuario;
 use Illuminate\Database\Seeder;
@@ -30,6 +31,15 @@ class SeguridadSeeder extends Seeder
             ['nombre' => 'Ver roles', 'codigo' => 'seguridad.roles.ver', 'modulo' => 'seguridad'],
             ['nombre' => 'Administrar roles', 'codigo' => 'seguridad.roles.administrar', 'modulo' => 'seguridad'],
             ['nombre' => 'Asignar permisos', 'codigo' => 'seguridad.roles.asignar_permisos', 'modulo' => 'seguridad'],
+            ['nombre' => 'Administrar personas', 'codigo' => 'seguridad.personas.administrar', 'modulo' => 'seguridad'],
+            ['nombre' => 'Administrar menús', 'codigo' => 'interfaz.menus.administrar', 'modulo' => 'interfaz'],
+            ['nombre' => 'Administrar items de menú', 'codigo' => 'interfaz.menu_items.administrar', 'modulo' => 'interfaz'],
+            ['nombre' => 'Administrar sexos', 'codigo' => 'catalogos.sexos.administrar', 'modulo' => 'catalogos'],
+            ['nombre' => 'Administrar tipos de documento', 'codigo' => 'catalogos.tipos_documento.administrar', 'modulo' => 'catalogos'],
+            ['nombre' => 'Administrar ubigeos', 'codigo' => 'catalogos.ubigeos.administrar', 'modulo' => 'catalogos'],
+            ['nombre' => 'Administrar departamentos', 'codigo' => 'catalogos.departamentos.administrar', 'modulo' => 'catalogos'],
+            ['nombre' => 'Administrar provincias', 'codigo' => 'catalogos.provincias.administrar', 'modulo' => 'catalogos'],
+            ['nombre' => 'Administrar distritos', 'codigo' => 'catalogos.distritos.administrar', 'modulo' => 'catalogos'],
         ])->map(fn (array $datos) => Permiso::query()->updateOrCreate(
             ['codigo' => $datos['codigo']],
             $datos,
@@ -56,9 +66,24 @@ class SeguridadSeeder extends Seeder
             ->whereIn('codigo', ['dashboard.ver', 'galeria.ver', 'galeria.administrar'])
             ->pluck('id'));
 
+        $persona = Persona::query()->updateOrCreate(
+            ['correo' => config('administracion.correo')],
+            [
+                'nombres' => 'Administrador',
+                'apellido_paterno' => 'General',
+                'apellido_materno' => null,
+                'tipo_documento_id' => 1,
+                'numero_documento' => '00000000',
+                'sexo_id' => 1,
+                'estado_id' => 1,
+            ],
+        );
+
         $usuario = Usuario::query()->updateOrCreate(
             ['correo' => config('administracion.correo')],
             [
+                'persona_id' => $persona->id,
+                'username' => 'admin',
                 'nombre' => config('administracion.nombre'),
                 'contrasena' => config('administracion.contrasena'),
                 'activo' => true,

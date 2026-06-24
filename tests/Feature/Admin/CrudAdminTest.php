@@ -76,6 +76,24 @@ class CrudAdminTest extends TestCase
             ->assertJsonPath('permisos.0.id', $permiso->id);
     }
 
+    public function test_admin_recibe_menu_desde_base_de_datos(): void
+    {
+        $this->actingAs($this->admin());
+
+        $this->getJson('/api/admin/menu')
+            ->assertOk()
+            ->assertJsonFragment(['title' => 'Administración'])
+            ->assertJsonFragment(['to' => '/admin/dashboard']);
+    }
+
+    public function test_admin_tiene_persona_relacionada(): void
+    {
+        $usuario = $this->admin();
+
+        $this->assertNotNull($usuario->persona_id);
+        $this->assertSame('Administrador General', $usuario->persona->nombre_completo);
+    }
+
     private function admin(): Usuario
     {
         $this->seed();

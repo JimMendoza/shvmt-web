@@ -7,14 +7,14 @@ return new class extends Migration
 {
     public function up(): void
     {
-        foreach (['sistema', 'seguridad', 'contenido', 'programa', 'galeria', 'multimedia'] as $esquema) {
+        foreach (['sistema', 'seguridad', 'catalogos', 'interfaz', 'contenido', 'programa', 'galeria', 'multimedia'] as $esquema) {
             DB::statement("CREATE SCHEMA IF NOT EXISTS {$esquema}");
         }
     }
 
     public function down(): void
     {
-        foreach (['multimedia', 'galeria', 'programa', 'contenido', 'seguridad', 'sistema'] as $esquema) {
+        foreach (['multimedia', 'galeria', 'programa', 'contenido', 'interfaz', 'catalogos', 'seguridad', 'sistema'] as $esquema) {
             DB::statement("DROP SCHEMA IF EXISTS {$esquema}");
         }
     }

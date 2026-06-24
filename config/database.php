@@ -97,7 +97,7 @@ return [
             'prefix_indexes' => true,
             'search_path' => env(
                 'DB_SEARCH_PATH',
-                'public,sistema,seguridad,contenido,programa,galeria,multimedia',
+                'public,sistema,seguridad,catalogos,interfaz,contenido,programa,galeria,multimedia',
             ),
             'sslmode' => env('DB_SSLMODE', 'prefer'),
         ],

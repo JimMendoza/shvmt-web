@@ -18,19 +18,21 @@ class AutenticacionController extends Controller
     public function iniciarSesion(IniciarSesionRequest $request): JsonResponse
     {
         $datos = $request->validated();
+        $login = $datos['login'] ?? $datos['correo'];
         $usuario = Usuario::query()
-            ->whereRaw('lower(correo) = lower(?)', [$datos['correo']])
+            ->whereRaw('lower(correo) = lower(?)', [$login])
+            ->orWhereRaw('lower(username) = lower(?)', [$login])
             ->first();
 
         if (! $usuario || ! Hash::check($datos['contrasena'], $usuario->contrasena)) {
             throw ValidationException::withMessages([
-                'correo' => ['Las credenciales no son válidas.'],
+                'login' => ['Las credenciales no son válidas.'],
             ]);
         }
 
         if (! $usuario->activo) {
             throw ValidationException::withMessages([
-                'correo' => ['El usuario está inactivo.'],
+                'login' => ['El usuario está inactivo.'],
             ]);
         }
 
@@ -38,14 +40,14 @@ class AutenticacionController extends Controller
         $request->session()->regenerate();
 
         return response()->json([
-            'usuario' => new UsuarioAutenticadoResource($usuario->load('roles.permisos')),
+            'usuario' => new UsuarioAutenticadoResource($usuario->load(['persona', 'roles.permisos'])),
         ]);
     }
 
     public function usuarioActual(Request $request): UsuarioAutenticadoResource
     {
         return new UsuarioAutenticadoResource(
-            $request->user()->load('roles.permisos'),
+            $request->user()->load(['persona', 'roles.permisos']),
         );
     }
 

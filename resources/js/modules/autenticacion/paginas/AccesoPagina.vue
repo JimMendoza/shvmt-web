@@ -11,7 +11,7 @@ import { usarAutenticacionStore } from '@/modules/autenticacion/store/autenticac
 const autenticacion = usarAutenticacionStore();
 const ruta = useRoute();
 const router = useRouter();
-const correo = ref('');
+const login = ref('');
 const contrasena = ref('');
 const error = ref('');
 const procesando = ref(false);
@@ -22,7 +22,7 @@ async function ingresar() {
 
     try {
         await autenticacion.iniciarSesion({
-            correo: correo.value,
+            login: login.value,
             contrasena: contrasena.value,
         });
 
@@ -31,7 +31,8 @@ async function ingresar() {
             : ruta.query.redireccion || '/admin/dashboard';
         await router.push(destino);
     } catch (excepcion) {
-        error.value = excepcion.response?.data?.errors?.correo?.[0]
+        error.value = excepcion.response?.data?.errors?.login?.[0]
+            || excepcion.response?.data?.errors?.correo?.[0]
             || excepcion.response?.data?.message
             || 'No se pudo iniciar sesión.';
     } finally {
@@ -48,8 +49,8 @@ async function ingresar() {
             <form class="formulario-acceso" @submit.prevent="ingresar">
                 <Message v-if="error" severity="error">{{ error }}</Message>
 
-                <label for="correo">Correo</label>
-                <InputText id="correo" v-model="correo" type="email" autocomplete="email" fluid />
+                <label for="login">Usuario o correo</label>
+                <InputText id="login" v-model="login" autocomplete="username" fluid />
 
                 <label for="contrasena">Contraseña</label>
                 <Password

@@ -15,6 +15,8 @@ class Usuario extends Authenticatable
     protected $table = 'seguridad.usuarios';
 
     protected $fillable = [
+        'persona_id',
+        'username',
         'nombre',
         'correo',
         'contrasena',
@@ -35,6 +37,11 @@ class Usuario extends Authenticatable
     public function getAuthPasswordName(): string
     {
         return 'contrasena';
+    }
+
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class, 'persona_id');
     }
 
     public function roles()
@@ -58,6 +65,11 @@ class Usuario extends Authenticatable
     public function esAdministrador(): bool
     {
         return $this->roles()->where('nombre', 'admin')->where('activo', true)->exists();
+    }
+
+    public function nombreVisible(): string
+    {
+        return $this->persona?->nombre_completo ?: $this->nombre;
     }
 
     protected function casts(): array

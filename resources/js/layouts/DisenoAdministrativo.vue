@@ -1,18 +1,26 @@
 <script setup>
 import Button from 'primevue/button';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import ElementoMenuAdmin from '@/modules/admin/componentes/ElementoMenuAdmin.vue';
+import { obtenerMenu } from '@/modules/admin/servicios/admin.servicio';
 import { usarAutenticacionStore } from '@/modules/autenticacion/store/autenticacion.store';
-import { menuAdmin } from '@/modules/admin/config/recursos';
 
 const autenticacion = usarAutenticacionStore();
 const router = useRouter();
+const opcionesMenu = ref([]);
 
-const opcionesMenu = menuAdmin.filter((opcion) => autenticacion.tienePermiso(opcion.permiso));
+async function cargarMenu() {
+    const { data } = await obtenerMenu();
+    opcionesMenu.value = data;
+}
 
 async function salir() {
     await autenticacion.cerrarSesion();
     await router.push('/admin/login');
 }
+
+onMounted(cargarMenu);
 </script>
 
 <template>
@@ -24,10 +32,17 @@ async function salir() {
             </RouterLink>
 
             <nav class="menu-administrativo">
-                <RouterLink v-for="opcion in opcionesMenu" :key="opcion.ruta" :to="opcion.ruta">
-                    <i :class="opcion.icono" />
-                    {{ opcion.etiqueta }}
-                </RouterLink>
+                <section v-for="menu in opcionesMenu" :key="menu.id" class="menu-administrativo__bloque">
+                    <div class="menu-administrativo__seccion">
+                        <i v-if="menu.icon" :class="menu.icon" />
+                        <span>{{ menu.title }}</span>
+                    </div>
+                    <ElementoMenuAdmin
+                        v-for="item in menu.children"
+                        :key="`${menu.id}-${item.id}`"
+                        :item="item"
+                    />
+                </section>
             </nav>
         </aside>
 

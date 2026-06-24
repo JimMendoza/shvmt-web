@@ -16,6 +16,10 @@ export function eliminar(recurso, id) {
     return http.delete(`/admin/${recurso}/${id}`);
 }
 
+export function obtenerMenu() {
+    return http.get('/admin/menu');
+}
+
 export function asignarRoles(usuarioId, roles) {
     return http.put(`/admin/usuarios/${usuarioId}/roles`, { roles });
 }
